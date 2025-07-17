@@ -11,11 +11,17 @@ def get_book_text(file):
 
 
 def main():
-    frankenstein = get_book_text('books/frankenstein.txt')
+    try:
+        book = sys.argv[1]
+    except IndexError:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    
+    frankenstein = get_book_text(book)
     characters = sort_chars(character_counts(frankenstein))
 
     print("============ BOOKBOT ============")
-    print("Analyzing book found at at books/frankenstein.txt...")
+    print("Analyzing book found at at " + book)
     print("----------- Word Count ----------")
     print("Found " + str(get_word_count(frankenstein)) + " total words")
     print("--------- Character Count -------")
